@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/third_party/pybind11/include",
+                "/home/fbriol/anaconda3/include/python3.7m",
+                "/usr/include/libxml2",
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        },
+        {
+            "name": "OSX",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/third_party/pybind11/include",
+                "/Users/fbriol/anaconda3/include/python3.7m",
+                "/opt/local/include/libxml2",
+                "/opt/local/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}
