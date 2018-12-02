@@ -6,7 +6,7 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/third_party/pybind11/include",
                 "/home/fbriol/anaconda3/include/python3.7m",
-                "/usr/include/libxml2",
+                "/usr/include/libxml2"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",

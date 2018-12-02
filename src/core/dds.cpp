@@ -1,7 +1,8 @@
 #include <DDS.h>
-#include <sstream>
+#include <Structure.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <sstream>
 
 namespace py = pybind11;
 
@@ -53,7 +54,11 @@ void init_dds(py::module& m) {
              self.container_name(cn);
            },
            py::arg("cn"))
-    //     Structure *container() ;
-      //
+      .def("container", &libdap::DDS::container,
+           py::return_value_policy::reference_internal)
+      .def("add_var", &libdap::DDS::add_var, py::arg("bt"))
+      //  .def("del_var", &libdap::DDS::del_var, py::arg("n"))
+      //  .def("var", &libdap::DDS::var
+      //  .def("var", &libdap::DDS::var
       ;
 }
