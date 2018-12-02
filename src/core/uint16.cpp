@@ -1,8 +1,8 @@
-#include <cstdint>
-#include <libdap/crc.h>
-#include <libdap/UInt16.h>
+#include <UInt16.h>
+#include <crc.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <cstdint>
 #include <sstream>
 
 namespace py = pybind11;
@@ -12,14 +12,14 @@ struct UInt16 : public libdap::UInt16 {
 
   libdap::BaseType* ptr_duplicate() override {
     PYBIND11_OVERLOAD(libdap::BaseType*, /* Return type */
-                      libdap::UInt16,     /* Parent class */
+                      libdap::UInt16,    /* Parent class */
                       ptr_duplicate,     /* Name of function in C++  */
     );
   }
 
   void compute_checksum(Crc32& checksum) override {
     PYBIND11_OVERLOAD(void,             /* Return type */
-                      libdap::UInt16,    /* Parent class */
+                      libdap::UInt16,   /* Parent class */
                       compute_checksum, /* Name of function in C++  */
                       checksum          /* Arguments */
     );
@@ -27,10 +27,10 @@ struct UInt16 : public libdap::UInt16 {
 
   void print_val(std::ostream& out, std::string space = "",
                  bool print_decl_p = true) override {
-    PYBIND11_OVERLOAD(void,          /* Return type */
+    PYBIND11_OVERLOAD(void,           /* Return type */
                       libdap::UInt16, /* Parent class */
-                      print_val,     /* Name of function in C++  */
-                      out,           /* Arguments */
+                      print_val,      /* Name of function in C++  */
+                      out,            /* Arguments */
                       space, print_decl_p);
   }
 };

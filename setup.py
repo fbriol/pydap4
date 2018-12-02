@@ -37,7 +37,7 @@ class build_ext(setuptools.command.build_ext.build_ext):
         build_args = ['--config', cfg]
 
         if platform.system() != 'Windows':
-            build_args += ['--', '-j']
+            build_args += ['--', '-j%d' % os.cpu_count()]
             cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
         else:
             cmake_args += ['-DCMAKE_GENERATOR_PLATFORM=x64',

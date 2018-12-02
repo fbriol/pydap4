@@ -1,9 +1,9 @@
-#include <cstdint>
-#include <libdap/crc.h>
-#include <libdap/Vector.h>
-#include <pybind11/pybind11.h>
+#include <Vector.h>
+#include <crc.h>
 #include <pybind11/numpy.h>
+#include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <cstdint>
 
 namespace py = pybind11;
 

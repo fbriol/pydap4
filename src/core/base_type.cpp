@@ -1,8 +1,8 @@
-#include <cstdint>
-#include <libdap/crc.h>
-#include <libdap/BaseType.h>
+#include <BaseType.h>
+#include <crc.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <cstdint>
 #include <sstream>
 
 namespace py = pybind11;

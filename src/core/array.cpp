@@ -1,10 +1,10 @@
-#include <cstdint>
-#include <libdap/crc.h>
-#include <libdap/D4Maps.h>
-#include <libdap/D4Dimensions.h>
-#include <libdap/Array.h>
+#include <Array.h>
+#include <D4Dimensions.h>
+#include <D4Maps.h>
+#include <crc.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <cstdint>
 #include <sstream>
 
 namespace py = pybind11;
