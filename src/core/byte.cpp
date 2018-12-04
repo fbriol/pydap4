@@ -60,6 +60,10 @@ void init_byte(py::module& m) {
       .def("dump", [](const libdap::Byte& self) -> std::string {
         std::ostringstream ss;
         self.dump(ss);
-        return ss.str();
+        auto result = ss.str();
+        std::replace_if(result.begin(), result.end(),
+                        [](const char c) -> bool { return c < 0 || c > 127; },
+                        '?');
+        return result;
       });
 }
