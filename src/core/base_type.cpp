@@ -51,40 +51,32 @@ struct BaseType : public libdap::BaseType {
   }
 };
 
-struct BaseTypeStackDeleter {
-  template <typename T>
-  void operator()(T* self) {
-    while (!self->empty()) {
-      auto top = self->top();
-      delete top;
-      self->pop();
-    }
-  }
-};
-
 void init_base_type(py::module& m) {
-  py::class_<
-      libdap::BaseType::btp_stack,
-      std::unique_ptr<libdap::BaseType::btp_stack, BaseTypeStackDeleter>>(
-      m, "BaseTypeStack")
+  py::class_<libdap::BaseType::btp_stack>(m, "BaseTypeStack")
       .def(py::init<>())
       .def("empty", &libdap::BaseType::btp_stack::empty)
       .def("__len__", &libdap::BaseType::btp_stack::size)
       .def("top",
            [](libdap::BaseType::btp_stack& self) -> libdap::BaseType* {
-             return self.top()->ptr_duplicate();
-           })
+             if (self.empty()) {
+               throw std::out_of_range("top from empty stack");
+             }
+             return self.top();
+           },
+           py::return_value_policy::reference_internal)
       .def("pop",
-           [](libdap::BaseType::btp_stack& self) -> libdap::BaseType* {
-             auto top = self.top();
-             auto result = top->ptr_duplicate();
+           [](libdap::BaseType::btp_stack& self) -> void {
+             if (self.empty()) {
+               throw std::out_of_range("pop from empty stack");
+             }
              self.pop();
-             delete top;
-             return result;
-           })
-      .def("push", [](libdap::BaseType::btp_stack& self, libdap::BaseType* bt) {
-        self.push(bt->ptr_duplicate());
-      });
+           },
+           py::return_value_policy::reference_internal)
+      .def("push",
+           [](libdap::BaseType::btp_stack& self, libdap::BaseType* bt) {
+             self.push(bt);
+           },
+           py::keep_alive<1, 2>());
 
   py::class_<libdap::BaseType, BaseType>(m, "BaseType")
       .def("__str__", &libdap::BaseType::toString)
